@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+{% block title %}
+添加商品
+{% endblock %}
+{% block content %}
+     <form method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+       <p>
+           <input class="form-control form-control-user" type="text" name="name" placeholder="商品名称">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="number" name="price" placeholder="价格">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="number" name="number" placeholder="商品数量">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="date" name="production" placeholder="商品出厂日期">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="text" name="safe_date" placeholder="保质期">
+       </p>
+       <p>
+           <textarea id="description" name="description">
+
+           </textarea>
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="file" name="picture" placeholder="商品图片">
+       </p>
+
+       <p>
+           <input href="/Shop/list_goods/" class="btn btn-primary btn-block" type="submit" value="添加商品">
+       </p>
+    </form>
+
+{% endblock %}
+{% block script %}
+<script src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("description",{uiColor:"#5dd733"})
+</script>
+{% endblock %}

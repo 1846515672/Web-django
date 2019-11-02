@@ -1,0 +1,14 @@
+{% extends "buyer/base.html" %}
+{% block title %}
+支付结果
+{% endblock %}
+{% block content %}
+<table>
+{% for k,v in data.items %}
+    <tr>
+        <th>{{ k }}</th>
+        <th>{{ v }}</th>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

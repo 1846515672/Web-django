@@ -1,0 +1,84 @@
+{% extends "Shop/base.html" %}
+{% block title %}
+一览
+{% endblock %}
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% ifequal id 0 %}
+    <p>
+        <input type="text" name="name" class="form-control"
+        placeholder="商品名称">
+    </p>
+        <p>
+            <input type="number" name="price" class="form-control form-control-user"
+        placeholder="价格">
+        </p>
+        <p>
+            <input type="number" name="number" class="form-control form-control-user"
+        placeholder="商品数量">
+        </p>
+        <p>
+            <input type="date" name="number" class="form-control form-control-user"
+        placeholder="商品出厂日期">
+        </p>
+        <p>
+            <input type="text" name="safe_date" class="form-control form-control-user"
+        placeholder="保质期">
+        </p>
+        <p>
+            <textarea name="description" id="description"
+                      class="form-control form-control-user">
+
+            </textarea>
+        </p>
+        <p>
+            <input type="file" name="picture" class="form-control form-control-user"
+        placeholder="商品图片">
+        </p>
+        <p>
+            <input type="submit" class="btn btn-primary btn-block"
+        value="添加商品">
+        </p>
+        {% else %}
+        <p>
+            <input type="text" class="form-control form-control-user"
+         name="name" placeholder="商品名称" value="{{ goods_data.name }}">
+        </p>
+        <p>
+           <input class="form-control form-control-user" type="number" name="price" placeholder="价格" value="{{ goods_data.price }}">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="number" name="number" placeholder="商品数量" value="{{ goods_data.number }}">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="date" name="production" placeholder="商品出厂日期" value="{{ goods_data.production }}">
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="text" name="safe_date" placeholder="保质期" value="{{ goods_data.safe_date }}">
+       </p>
+       <p>
+           <textarea id="description" class="form-control form-control-user" name="description">
+                {{ goods_data.description }}
+           </textarea>
+       </p>
+       <p>
+           <input class="form-control form-control-user" type="file" name="picture" placeholder="商品图片">
+       </p>
+        <select name="goods_type" class="form-control form-control-user">
+        {% for t in type_list %}
+            <option value="{{ t.id }}">{{ t.name }}</option>
+        {% endfor %}
+        </select>
+       <p>
+           <input class="btn btn-primary btn-block" type="submit" value="修改商品">
+       </p>
+    {% endifequal %}
+    </form>
+{% endblock %}
+{% block script %}
+<script src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("description",{uiColor:"#00909d"})
+</script>
+{% endblock %}
